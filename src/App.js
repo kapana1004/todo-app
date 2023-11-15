@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TodoClock from "./Components/TodoClock";
 
 function App() {
@@ -23,10 +23,24 @@ function App() {
   const weekday = time.toLocaleDateString(undefined, { weekday: "short" });
   const monthDay = time.getDate();
 
+  // const listWeek = new Date().toLocaleDateString(undefined, {
+  //   weekday: "short",
+  // });
+  // const listDay = new Date().getDate();
+  // const listTime = new Date().toLocaleTimeString([], {
+  //   hour: "2-digit",
+  //   minute: "2-digit",
+  // });
+
   const addTask = () => {
     if (newTask.trim() !== "") {
       setTasks([...tasks, { id: Date.now(), text: newTask, completed: false }]);
       setNewTask("");
+      const fixedTodoDate = new Date();
+      const todoCreatingDate = fixedTodoDate.toLocaleString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
     }
   };
 
@@ -55,7 +69,7 @@ function App() {
         <img
           className=" w-[430px] "
           src="/assets/cover-photo.png"
-          alt="flofers"
+          alt="flowers"
         />
 
         <div className=" flex flex-row justify-center pt-[17px] relative">
@@ -83,10 +97,13 @@ function App() {
             className=" flex flex-row justify-between mb-[20px] "
             key={task.id}
           >
-            <p className=" mr-[140px] w-[149px] h-[22px] text-[18px] leading-[22px]">
-              {task.text}
-            </p>
-            <span> </span>
+            <div className="flex flex-col">
+              <p className=" mr-[140px] w-[149px] h-[22px] text-[18px] leading-[22px]  text-[#0D0D0D]">
+                {task.text}
+              </p>
+              <span className=" text-[12px]">{todoCreatingDate} </span>
+              <span className=" text-[12px]"> </span>
+            </div>
             <div className=" w-[62px] flex justify-between items-center">
               <div
                 className={`rounded-full ${
