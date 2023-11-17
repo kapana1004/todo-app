@@ -23,21 +23,6 @@ function App() {
   const weekday = time.toLocaleDateString(undefined, { weekday: "short" });
   const monthDay = time.getDate();
 
-  // const listWeek = new Date().toLocaleDateString(undefined, {
-  //   weekday: "short",
-  // });
-  // const listDay = new Date().getDate();
-  // const listTime = new Date().toLocaleTimeString([], {
-  //   hour: "2-digit",
-  //   minute: "2-digit",
-  // });
-
-  // const fixedTodoDate = new Date();
-  // const todoCreatingDate = fixedTodoDate.toLocaleString([], {
-  //   hour: "2-digit",
-  //   minute: "2-digit",
-  // });
-
   const addTask = () => {
     if (newTask.trim() !== "") {
       setTasks([
