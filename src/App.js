@@ -32,15 +32,24 @@ function App() {
   //   minute: "2-digit",
   // });
 
+  // const fixedTodoDate = new Date();
+  // const todoCreatingDate = fixedTodoDate.toLocaleString([], {
+  //   hour: "2-digit",
+  //   minute: "2-digit",
+  // });
+
   const addTask = () => {
     if (newTask.trim() !== "") {
-      setTasks([...tasks, { id: Date.now(), text: newTask, completed: false }]);
+      setTasks([
+        ...tasks,
+        {
+          id: Date.now(),
+          text: newTask,
+          completed: false,
+          fixedTodoDate: new Date(),
+        },
+      ]);
       setNewTask("");
-      const fixedTodoDate = new Date();
-      const todoCreatingDate = fixedTodoDate.toLocaleString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
     }
   };
 
@@ -55,6 +64,31 @@ function App() {
   const deleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
+
+  function formatTaskDate(date) {
+    const today = new Date();
+    const taskDate = new Date(date);
+
+    if (
+      today.getDate() === taskDate.getDate() &&
+      today.getMonth() === taskDate.getMonth() &&
+      today.getFullYear() === taskDate.getFullYear()
+    ) {
+      return `Today at ${taskDate.toLocaleString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })}`;
+    } else {
+      return taskDate.toLocaleString("en-US", {
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+    }
+  }
 
   return (
     <div className=" min-w-[100vw] min-h-[100vh] flex justify-center items-center flex-col ">
@@ -101,7 +135,10 @@ function App() {
               <p className=" mr-[140px] w-[149px] h-[22px] text-[18px] leading-[22px]  text-[#0D0D0D]">
                 {task.text}
               </p>
-              <span className=" text-[12px]">{todoCreatingDate} </span>
+              <span className=" text-[12px]">
+                {" "}
+                {formatTaskDate(task.fixedTodoDate)}{" "}
+              </span>
               <span className=" text-[12px]"> </span>
             </div>
             <div className=" w-[62px] flex justify-between items-center">
