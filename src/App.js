@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import TodoClock from "./Components/TodoClock";
 import delImage from "./Assets/akar-icons_trash-can.png";
 import plusImage from "./Assets/Vector-plus.png";
-import coverImage from "./Assets/cover-photo.png";
+import coverPhoto from "./Assets/cover-photo.png";
 import ticImage from "./Assets/Vector.png";
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -88,7 +88,7 @@ function App() {
           formattedTime={formattedTime}
         />
 
-        <img className=" w-[430px] " src={coverImage} alt="flowers" />
+        <img className=" w-[430px] " src={coverPhoto} alt="flowers" />
 
         <div className=" flex flex-row justify-center pt-[17px] relative">
           <input
