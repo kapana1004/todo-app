@@ -1,7 +1,10 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import TodoClock from "./Components/TodoClock";
-
+import delImage from "./Assets/akar-icons_trash-can.png";
+import plusImage from "./Assets/Vector-plus.png";
+import coverImage from "./Assets/cover-photo.png";
+import ticImage from "./Assets/Vector.png";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
@@ -85,11 +88,7 @@ function App() {
           formattedTime={formattedTime}
         />
 
-        <img
-          className=" w-[430px] "
-          src="/assets/cover-photo.png"
-          alt="flowers"
-        />
+        <img className=" w-[430px] " src={coverImage} alt="flowers" />
 
         <div className=" flex flex-row justify-center pt-[17px] relative">
           <input
@@ -103,10 +102,10 @@ function App() {
             className=" bg-green-300  w-[88px] h-[49px] flex justify-center items-center ml-[10px] rounded-[5px]"
             onClick={addTask}
           >
-            <img src="/assets/Vector-plus.png" alt="plus" />
+            <img src={plusImage} alt="plus" />
           </button>
           <div className=" w-[24px] h-[24px] rounded-[50px] bg-green-300 absolute left-[8%] top-[44%] flex justify-center items-center ">
-            <img src="/assets/Vector.png" alt="tic" />
+            <img src={ticImage} alt="tic" />
           </div>
         </div>
       </div>
@@ -134,17 +133,17 @@ function App() {
                 onClick={() => toggleTask(task.id)}
               >
                 <img
-                  className=" w-[9px] h-[7px]"
-                  src="/assets/Vector.png"
+                  className=" w-[9px] h-[7px] cursor-pointer"
+                  src={ticImage}
                   alt="tic"
                 />
               </div>
 
               <img
-                className=" w-[24px] h-[24x]"
+                className=" w-[24px] h-[24x] cursor-pointer"
                 onClick={() => deleteTask(task.id)}
-                src="/assets/akar-icons_trash-can.png"
-                alt="delet"
+                src={delImage}
+                alt="delete"
               />
             </div>
           </li>
